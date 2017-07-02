@@ -1,0 +1,44 @@
+div,p,h1,h2,h3,body,button {
+    padding: 0px;
+    margin: 0px;
+    display: block;
+    position: relative
+}
+
+div.container {
+    width: 300px;
+    display: flex;
+    border: 1px dotted black;
+}
+
+div.progress-bar {
+    height: 30px;
+    width: 100%;
+    z-index: 0;
+    margin: 15px;
+    border: 1px solid #aaa;
+}
+
+div.progress-bar div.bar-value {
+    position: absolute;
+    height: inherit;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+div.progress-bar.cyan div.bar-value {
+    background-color: #8af0ff; 
+}
+
+div.progress-bar.pink div.bar-value {
+    background-color: #ff8686; 
+    width: 100%;
+}
+
+div.progress-bar p.bar-text {
+    position: absolute;
+    top: 20%;
+    left: 47%;
+    z-index: 20;
+}
