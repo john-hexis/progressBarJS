@@ -2,7 +2,7 @@ var service = (function() {
     var instance;
 
     function init() {
-        var AjaxCall = function(method, url, success, error) {
+        var ajaxCall = function(method, url, success, error) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -43,7 +43,7 @@ var service = (function() {
                 finalUrl = '' + url + '?' + paramText + '';
             }
 
-            this.AjaxCall("GET", finalUrl
+            ajaxCall("GET", finalUrl
             , function(response) {
                 if(success !== undefined) {
                     success(response);
