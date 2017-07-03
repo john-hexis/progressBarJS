@@ -7,7 +7,7 @@ var service = (function() {
             xhttp.onreadystatechange = function() {
                 if (this.status == 200) {
                     if(success !== undefined && this.readyState == 4) {
-                        success(JSON.parse(this.responseText));
+                        success(JSON.parse(this.response));
                     }
                 }
                 else if (this.status == 0) {
@@ -17,7 +17,7 @@ var service = (function() {
                 }
                 else {
                     if(error !== undefined) {
-                        error(JSON.parse(this.responseText));
+                        error(JSON.parse(this.response));
                     }
                 }
             };
