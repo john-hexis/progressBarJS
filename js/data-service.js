@@ -5,9 +5,14 @@ var service = (function() {
         var ajaxCall = function(method, url, success, error) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
+                if (/*(this.readyState == 4 || this.readyState == 3) && */this.status == 200) {
                     if(success !== undefined) {
                         success(JSON.parse(this.responseText));
+                    }
+                }
+                else if (this.status == 0) {
+                    if(this.responseText !== undefined || this.responseText != '') {
+                        console.log(this.responseText);
                     }
                 }
                 else {
@@ -52,7 +57,7 @@ var service = (function() {
             ,function(err) {
                 console.log(err);
                 if(error !== undefined) {
-                    error(response);
+                    error(err);
                 }
             });
         }
