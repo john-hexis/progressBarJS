@@ -1,39 +1,75 @@
+//// <reference path="data-service.js" />
+
 var pbar = (function () {
     var instance;
 
     function init() {
+        var ID = 'pbar';
         var pBarsID = 'div.progress-bar';
         var barValID = 'div.bar-value';
         var barTextID = 'p.bar-text';
 
         var selector = function (param) {
-            return document.querySelectorAll('' + pBarsID + '' + param + '');
-        }
+            return document.querySelectorAll('' + pBarsID + '' + param + '')[0];
+        };
         var selectPBars = function(id) {
-            selector('#' + id + '');
-        }
+            return selector('#' + id + '');
+        };
         var selectBarVal = function(id) {
-            selector('#' + id + ' ' + barValID + '');
-        }
+            return selector('#' + id + ' ' + barValID + '');
+        };
         var selectBarTxt = function(id) {
-            selector('#' + id + ' ' + barVabarTextIDlID + '');
-        }        
+            return selector('#' + id + ' ' + barVabarTextIDlID + '');
+        };
 
-        function setValue(id) {
+        function setValue(id, value, limit) {
+            var currValue = selector(id).getAttribute('value') + value;
             var bar = selectBarVal(id);
             var text = selectBarTxt(id);
 
-            //bar.
+            if(currValue > 100) {
+                bar.style.width = '100%';
+                bar.style.backgroundColor = '#ff8686 !important';
+            }
+            else if (currValue < 0) {
+                bar.style.width = '0%';
+                bar.style.backgroundColor = 'inherit';
+            }
+            else {
+                bar.style.width = '' + value + '%';
+                bar.style.backgroundColor = 'inherit';
+            }
+
+            var textVal = currValue > limit? limit : currValue;
+
+            text.innerHTML = '' + textVal + '%';
+            selector(id).setAttribute('value', textVal);
+        }
+
+        function gen(id, contents) {
+            service.ins.gethtml(elURL.pbars
+            , function(response) {
+                var result = '';
+                var counter = 0;
+                contents.forEach(function(e) {
+                    result += response.replace(/\$0/g, '' + pBarsID + '' + counter + '').replace(/\$1/g, e).replace(/\$2/g, e);
+                    counter++;
+                }, this);
+                document.getElementById(id).innerHTML = result;
+            }
+            , function(error) {
+                
+            });
         }
 
         return {
-            activate: activate
+            setValue: setValue
         };
     }
 
     return {
         ins: (function () {
-            if (condition) {
+            if (instance === null || instance === undefined) {
                 instance = new init();
             }
             return instance;

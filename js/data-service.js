@@ -25,6 +25,29 @@ var service = (function() {
             xhttp.send();
         };
 
+        var ajaxCallText = function(method, url, success, error) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.status == 200) {
+                    if(success !== undefined && this.readyState == 4) {
+                        success(this.responseText);
+                    }
+                }
+                else if (this.status == 0) {
+                    if(this.responseText !== undefined || this.responseText != '') {
+                        console.log(this.responseText);
+                    }
+                }
+                else {
+                    if(error !== undefined) {
+                        error(JSON.parse(this.response));
+                    }
+                }
+            };
+            xhttp.open(method, url, true);
+            xhttp.send();
+        };
+
         function get(url, params, success, error) {
             var finalUrl = '', paramText = '', key;
             if (params !== undefined || params !== null) {
@@ -62,8 +85,24 @@ var service = (function() {
             });
         }
 
+        function gethtml(url, success, error) {
+            ajaxCallText("GET", url
+            , function(response) {
+                if(success !== undefined) {
+                    success(response);
+                }
+            }
+            ,function(err) {
+                console.log(err);
+                if(error !== undefined) {
+                    error(err);
+                }
+            });
+        }
+
         return {
             get: get
+            , gethtml: gethtml
         };
     }
 
@@ -76,3 +115,12 @@ var service = (function() {
       })()  
     };
 })();
+
+var elURL = (function() {
+    var host = '/element/';
+
+    return {
+        button: (function () { return '' + host + 'html-buttons.html'; })()
+        ,pbars: (function () { return '' + host + 'html-pbars.html'; })()
+    };
+})()
