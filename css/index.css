@@ -36,3 +36,7 @@ div.progress-bar p.bar-text {
     left: 47%;
     z-index: 20;
 }
+
+button {
+    margin: 5px;
+}

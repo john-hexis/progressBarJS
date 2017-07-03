@@ -4,22 +4,19 @@ var pbar = (function () {
     var instance;
 
     function init() {
-        var ID = 'pbar';
+        var ID = app.pbarID;
         var pBarsID = 'div.progress-bar';
         var barValID = 'div.bar-value';
         var barTextID = 'p.bar-text';
 
-        var selector = function (param) {
-            return document.querySelectorAll('' + param + '')[0];
-        };
         var selectPBars = function(id) {
-            return selector('#' + id + '');
+            return appHelper.ins.selector('#' + id + '');
         };
         var selectBarVal = function(id) {
-            return selector('#' + id + ' ' + barValID + '');
+            return appHelper.ins.selector('#' + id + ' ' + barValID + '');
         };
         var selectBarTxt = function(id) {
-            return selector('#' + id + ' ' + barTextID + '');
+            return appHelper.ins.selector('#' + id + ' ' + barTextID + '');
         };
 
         var setBarValue = function (id, value, limit) {
@@ -30,18 +27,18 @@ var pbar = (function () {
 
                 if(currValue > 100) {
                     bar.style.width = '100%';
-                    bar.style.backgroundColor = '#ff8686 !important';
+                    bar.style.backgroundColor = '#ff8686';
                 }
                 else if (currValue < 0) {
                     bar.style.width = '0%';
                     bar.style.backgroundColor = '#8af0ff';
                 }
                 else {
-                    bar.style.width = '' + value + '%';
+                    bar.style.width = '' + currValue + '%';
                     bar.style.backgroundColor = '#8af0ff';
                 }
 
-                var textVal = currValue > limit? limit : currValue;
+                var textVal = currValue > limit? limit : currValue < 0? 0: currValue;
                 text.innerHTML = '' + textVal + '%';
                 selectPBars(id).setAttribute('value', textVal);
                 selectPBars(id).setAttribute('limit', limit);
@@ -51,6 +48,11 @@ var pbar = (function () {
         };
 
         function setValue(id, value, limit) {
+            setBarValue(id, value, limit);
+        }
+
+        function setValueOnFly(id, value) {
+            var limit = Number(selectPBars(id).getAttribute('limit'));
             setBarValue(id, value, limit);
         }
 
@@ -77,6 +79,7 @@ var pbar = (function () {
 
         return {
             setValue: setValue
+            , setValueOnFly: setValueOnFly
             , gen: gen
         };
     }

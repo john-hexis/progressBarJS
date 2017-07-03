@@ -124,10 +124,12 @@ var serviceURL = (function() {
 })();
 
 var elURL = (function() {
-    var host = '' + originVPath +  '/element/';
+    var host = '' + app.originVPath +  '/element/';
 
     return {
         button: (function () { return '' + host + 'html-buttons.html'; })()
         ,pbars: (function () { return '' + host + 'html-pbars.html'; })()
+        ,cb: (function () { return '' + host + 'html-combo.html'; })()
+        ,cbOpt: (function () { return '' + host + 'html-combo-option.html'; })()
     };
 })();
