@@ -6,14 +6,15 @@ div,p,h1,h2,h3,body,button {
 }
 
 div.container {
-    width: 300px;
-    display: flex;
+    min-width: 300px;
     border: 1px dotted black;
+    min-height: 10px;
+    float: left;
+    padding: 15px;
 }
 
 div.progress-bar {
     height: 30px;
-    width: 100%;
     z-index: 0;
     margin: 15px;
     border: 1px solid #aaa;

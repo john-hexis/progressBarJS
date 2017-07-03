@@ -110,7 +110,7 @@ var service = (function() {
     return {
       ins: (function() {
           if(instance === null || instance === undefined) {
-            instance = new init();
+            instance = init();
           }
           return instance;
       })()  
@@ -126,7 +126,7 @@ var serviceURL = (function() {
 })();
 
 var elURL = (function() {
-    var host = '/element/';
+    var host = '' + window.location.origin + app.vPath +  '/element/';
 
     return {
         button: (function () { return '' + host + 'html-buttons.html'; })()

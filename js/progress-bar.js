@@ -59,7 +59,7 @@ var pbar = (function () {
                 var result = '';
                 var counter = 0;
                 contents.forEach(function(e) {
-                    result += response.replace(/\$0/g, '' + pBarsID + '' + counter + '').replace(/\$1/g, 0).replace(/\$2/g, 0);
+                    result += response.replace(/\$0/g, '' + ID + '' + counter + '').replace(/\$1/g, 0).replace(/\$2/g, 0);
                     counter++;
                 }, this);
                 document.getElementById(id).innerHTML = result;
@@ -71,13 +71,14 @@ var pbar = (function () {
 
         return {
             setValue: setValue
+            , gen: gen
         };
     }
 
     return {
         ins: (function () {
             if (instance === null || instance === undefined) {
-                instance = new init();
+                instance = init();
             }
             return instance;
         })()

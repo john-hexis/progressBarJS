@@ -32,7 +32,7 @@ var index = (function () {
     return {
         ins: (function () {
             if (instance === null || instance === undefined) {
-                instance = new init();
+                instance = init();
             }
             return instance;
         })()

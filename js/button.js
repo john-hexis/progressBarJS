@@ -7,7 +7,7 @@ var button = (function() {
 
     return {
         ins: (function() {
-            instance = new init();
+            instance = init();
         })()
     };
 })();
