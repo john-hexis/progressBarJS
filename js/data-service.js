@@ -5,8 +5,8 @@ var service = (function() {
         var ajaxCall = function(method, url, success, error) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
-                if (/*(this.readyState == 4 || this.readyState == 3) && */this.status == 200) {
-                    if(success !== undefined) {
+                if (this.status == 200) {
+                    if(success !== undefined && this.readyState == 4) {
                         success(JSON.parse(this.responseText));
                     }
                 }
