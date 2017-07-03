@@ -6,13 +6,17 @@ div,p,h1,h2,h3,body,button {
 }
 
 div.container {
-    width: 500px;
+    width: 80%;
     border: 1px dotted black;
     min-height: 10px;
     padding: 15px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15px;
+}
+
+div.container.table {
+    display: table;
 }
 
 div.progress-bar {
@@ -38,5 +42,29 @@ div.progress-bar p.bar-text {
 }
 
 button {
-    margin: 5px;
+    margin: 10px;
+    float: left
+}
+
+@media only screen and (min-width: 600px) {
+    div.container {
+        width: 300px;
+        border: 1px dotted black;
+        min-height: 10px;
+        padding: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+    }
+}
+@media only screen and (min-width: 768px) {
+    div.container {
+        width: 500px;
+        border: 1px dotted black;
+        min-height: 10px;
+        padding: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+    }
 }
