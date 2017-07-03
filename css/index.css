@@ -6,11 +6,13 @@ div,p,h1,h2,h3,body,button {
 }
 
 div.container {
-    min-width: 300px;
+    width: 500px;
     border: 1px dotted black;
     min-height: 10px;
-    float: left;
     padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
 }
 
 div.progress-bar {
@@ -26,15 +28,6 @@ div.progress-bar div.bar-value {
     top: 0;
     left: 0;
     z-index: 10;
-}
-
-div.progress-bar.cyan div.bar-value {
-    background-color: #8af0ff; 
-}
-
-div.progress-bar.pink div.bar-value {
-    background-color: #ff8686; 
-    width: 100%;
 }
 
 div.progress-bar p.bar-text {

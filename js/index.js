@@ -5,7 +5,7 @@ var index = (function () {
     var instance;
 
     function init() {
-        var pool = 'pool';
+        var pool1 = 'pool1';
 
         function initEvent() {
             
@@ -14,13 +14,11 @@ var index = (function () {
         function initDefaultState() {
             service.ins.get(serviceURL.pbars, null
             , function(response) {
-                pbar.ins.gen(pool, response.bars);
+                pbar.ins.gen(pool1, response.bars, response.limit);
             }
             , function(error) {
                 console.log(error);
             });
-
-            
         }
 
         return {

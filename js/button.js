@@ -2,7 +2,13 @@ var button = (function() {
     var instance;
 
     function init() {
-        
+        function gen(id) {
+            
+        }
+
+        return {
+
+        }
     }
 
     return {

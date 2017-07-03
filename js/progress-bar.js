@@ -10,7 +10,7 @@ var pbar = (function () {
         var barTextID = 'p.bar-text';
 
         var selector = function (param) {
-            return document.querySelectorAll('' + pBarsID + '' + param + '')[0];
+            return document.querySelectorAll('' + param + '')[0];
         };
         var selectPBars = function(id) {
             return selector('#' + id + '');
@@ -19,12 +19,12 @@ var pbar = (function () {
             return selector('#' + id + ' ' + barValID + '');
         };
         var selectBarTxt = function(id) {
-            return selector('#' + id + ' ' + barVabarTextIDlID + '');
+            return selector('#' + id + ' ' + barTextID + '');
         };
 
         var setBarValue = function (id, value, limit) {
             try {
-                var currValue = selector(id).getAttribute('value') + value;
+                var currValue = Number(selectPBars(id).getAttribute('value')) + value;
                 var bar = selectBarVal(id);
                 var text = selectBarTxt(id);
 
@@ -34,16 +34,17 @@ var pbar = (function () {
                 }
                 else if (currValue < 0) {
                     bar.style.width = '0%';
-                    bar.style.backgroundColor = 'inherit';
+                    bar.style.backgroundColor = '#8af0ff';
                 }
                 else {
                     bar.style.width = '' + value + '%';
-                    bar.style.backgroundColor = 'inherit';
+                    bar.style.backgroundColor = '#8af0ff';
                 }
 
                 var textVal = currValue > limit? limit : currValue;
                 text.innerHTML = '' + textVal + '%';
-                selector(id).setAttribute('value', textVal);
+                selectPBars(id).setAttribute('value', textVal);
+                selectPBars(id).setAttribute('limit', limit);
             } catch (error) {
                 console.log(error);
             }
@@ -53,16 +54,21 @@ var pbar = (function () {
             setBarValue(id, value, limit);
         }
 
-        function gen(id, contents) {
+        function gen(id, contents, limit) {
             service.ins.gethtml(elURL.pbars
             , function(response) {
                 var result = '';
                 var counter = 0;
                 contents.forEach(function(e) {
-                    result += response.replace(/\$0/g, '' + ID + '' + counter + '').replace(/\$1/g, 0).replace(/\$2/g, 0);
+                    result += response.replace(/\$0/g, '' + ID + '' + counter + '').replace(/\$1/g, 0).replace(/\$2/g, 0).replace(/\$3/g, limit);
                     counter++;
                 }, this);
                 document.getElementById(id).innerHTML = result;
+                counter = 0;
+                contents.forEach(function(e) {
+                    setBarValue('' + ID + '' + counter + '', e, limit);
+                    counter++;
+                }, this);
             }
             , function(error) {
                 console.log(error);
