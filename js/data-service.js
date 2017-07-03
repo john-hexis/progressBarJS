@@ -1,3 +1,4 @@
+"use strict";
 var service = (function() {
     var instance;
 
@@ -116,6 +117,14 @@ var service = (function() {
     };
 })();
 
+var serviceURL = (function() {
+    var host = 'http://pb-api.herokuapp.com/';
+
+    return {
+        pbars: (function() { return '' + host + 'bars'; })()
+    };
+})();
+
 var elURL = (function() {
     var host = '/element/';
 
@@ -123,4 +132,4 @@ var elURL = (function() {
         button: (function () { return '' + host + 'html-buttons.html'; })()
         ,pbars: (function () { return '' + host + 'html-pbars.html'; })()
     };
-})()
+})();
