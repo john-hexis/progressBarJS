@@ -118,15 +118,13 @@ var service = (function() {
 })();
 
 var serviceURL = (function() {
-    var host = 'http://pb-api.herokuapp.com/';
-
     return {
-        pbars: (function() { return '' + host + 'bars'; })()
+        pbars: (function() { return '' + app.hostAPI + 'bars'; })()
     };
 })();
 
 var elURL = (function() {
-    var host = '' + window.location.origin + app.vPath +  '/element/';
+    var host = '' + originVPath +  '/element/';
 
     return {
         button: (function () { return '' + host + 'html-buttons.html'; })()
