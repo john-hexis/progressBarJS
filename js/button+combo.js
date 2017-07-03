@@ -1,14 +1,19 @@
 "use strict";
-var button = (function() {
+var btnCb = (function() {
     var instance;
 
     function init() {
-        function gen(id) {
+        function genBtn(id) {
+            
+        }
+
+        function genCb(id) {
             
         }
 
         return {
-
+            genBtn: genBtn
+            , genCb: genCb
         }
     }
 
