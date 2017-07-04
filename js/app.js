@@ -1,7 +1,7 @@
 "use strict";
 var app = (function() {
     return {
-        originVPath: (function() { return '' + window.location.origin + '/pbar'; })()
+        originVPath: (function() { return '' + window.location.origin + '/pbars'; })()
         , hostAPI: (function() { return 'http://pb-api.herokuapp.com/'; })()
         , pbarID: (function() { return 'pbar'; })()
     };
